@@ -1,5 +1,7 @@
 package space.gatt.JavacordCommander;
 
+import de.btobastian.javacord.DiscordAPI;
+import de.btobastian.javacord.Javacord;
 import de.btobastian.javacord.entities.message.MessageBuilder;
 import org.reflections.Reflections;
 
@@ -18,19 +20,25 @@ public class JavacordCommander {
 
 	private static JavacordCommander instance;
 
+	private DiscordAPI javacordInstance;
+
 	/**
 	 * Including the (String) dir variable, will automatically call the enableSnooper method.
 	 */
-	public JavacordCommander(){
+	public JavacordCommander(DiscordAPI apiInstance){
+		this.javacordInstance = apiInstance;
 		JavacordCommander.instance = this;
+		javacordInstance.registerListener(new CommandListener());
 	}
 
 	/**
 	 * @dir      The directory or package to look for classes in.
 	 */
-	public JavacordCommander(String dir){
+	public JavacordCommander(DiscordAPI apiInstance, String dir){
+		this.javacordInstance = apiInstance;
 		JavacordCommander.instance = this;
 		enableSnooper(dir);
+		javacordInstance.registerListener(new CommandListener());
 	}
 
 	public static JavacordCommander getInstance() {
