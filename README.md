@@ -7,7 +7,7 @@ A wrapper that allows for easy creation of bot commands via the use of Javacord
 
 Add the following to your pom.xml file;
 
-```
+```xml
 <repositories>
 	...
 	<repository>
@@ -34,12 +34,14 @@ If you don't use Maven, you can download the latest .JAR file from the Maven Rep
 # Registering commands
 
 ```java
-JavacordCommander jcc = new JavacordCommander(discordAPI);
+DiscordAPI api = new DiscordAPI(...);
+JavacordCommander jcc = new JavacordCommander(api);
 jcc.enableSnooper("your.package.here");
 ```
 or
 ```java
-JavacordCommander jcc = new JavacordCommander(discordAPI, "your.package.here");
+DiscordAPI api = new DiscordAPI(...);
+JavacordCommander jcc = new JavacordCommander(api, "your.package.here");
 ```
 By using the second method, the ```enableSnooper()``` method is automatically called.
 
