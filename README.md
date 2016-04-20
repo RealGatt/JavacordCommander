@@ -29,7 +29,7 @@ Add the following to your pom.xml file;
 
 **The current version of Javacord Commander is:** ```1.0.0```
 
-If you don't use Maven, you can download the latest .JAR file from the Maven Repository ```http://dev.gatt.space/maven/space/gatt/javacordcommander/javacordcommander/```
+If you don't use Maven, you can download the latest .JAR file from the Maven Repository here: http://dev.gatt.space/maven/space/gatt/javacordcommander/javacordcommander/
 
 # Registering commands
 
