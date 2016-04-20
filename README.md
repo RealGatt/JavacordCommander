@@ -1,15 +1,45 @@
 # JavacordCommander
 A wrapper that allows for easy creation of bot commands via the use of Javacord
 
+# Installing JavacordCommander
+
+## Maven
+
+Add the following to your pom.xml file;
+
+```
+<repositories>
+	...
+	<repository>
+	    <id>javacordcommander-repo</id>
+	    <url>http://dev.gatt.space/maven/</url>
+	</repository>
+	...
+</repositories>
+<dependencies>
+	...
+	<dependency>
+            <groupId>space.gatt.javacordcommander</groupId>
+            <artifactId>javacordcommander</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+	...
+</dependencies>
+```
+
+**The current version of Javacord Commander is:** ```1.0.0```
+
+If you don't use Maven, you can download the latest .JAR file from the Maven Repository here: http://dev.gatt.space/maven/space/gatt/javacordcommander/javacordcommander/
+
 # Registering commands
 
 ```java
-JavacordCommander jcc = new JavacordCommander();
+JavacordCommander jcc = new JavacordCommander(discordAPI);
 jcc.enableSnooper("your.package.here");
 ```
 or
 ```java
-JavacordCommander jcc = new JavacordCommander("your.package.here");
+JavacordCommander jcc = new JavacordCommander(discordAPI, "your.package.here");
 ```
 By using the second method, the ```enableSnooper()``` method is automatically called.
 
