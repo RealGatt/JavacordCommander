@@ -116,10 +116,14 @@ public class JavacordCommander {
 		}
 	}
 
+	/**
+	* <p>Returns the Built Help Message with all the Groups and stuff.</p>
+	*/
 	public String buildHelpMessage(){
 		MessageBuilder builder = new MessageBuilder();
 		builder.append("```" + Settings.getHelpMessageLanguage()).appendNewLine();
 		for (String group : helpLines.keySet()){
+			builder.append(Settings.getHelpMessageBreaker().replace("%group", group));
 			for (String msg : helpLines.get(group)){
 				builder.append(msg).appendNewLine();
 			}

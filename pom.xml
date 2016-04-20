@@ -18,7 +18,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
+                <!--<executions>
                     <execution>
                         <id>unpack-dependencies</id>
                         <phase>prepare-package</phase>
@@ -30,7 +30,7 @@
                         </configuration>
                     </execution>
 
-                </executions>
+                </executions>-->
             </plugin>
             <plugin>
                 <!-- Build an executable JAR -->
@@ -43,7 +43,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
-                <executions>
+                <!--<executions>
                     <execution>
                         <id>unpack</id>
                         <phase>process-sources</phase>
@@ -51,7 +51,7 @@
                             <goal>compile</goal>
                         </goals>
                     </execution>
-                </executions>
+                </executions>-->
                 <configuration>
                     <source>7</source>
                     <target>7</target>

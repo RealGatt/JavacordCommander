@@ -9,8 +9,23 @@ public class Settings {
     private static String commandStarter = "";
     private static String msgStarter = "";
 
+    private static String helpMessageBreaker = "~~~~ %group ~~~~";
     private static String helpMessageLanguage = "xml";
     private static String helpFormat = "< %cmd > - %desc - %group";
+
+
+    public static String getHelpMessageBreaker() {
+        return helpMessageBreaker;
+    }
+
+    /**
+     * Set's the breaker line that will be used for definined new sections of the Help Message based on the groups.
+     * <p>The Placeholder %group will be replaced with the name of the group.</p>
+     */
+
+    public static void setHelpMessageBreaker(String helpMessageBreaker) {
+        Settings.helpMessageBreaker = helpMessageBreaker;
+    }
 
     public static String getHelpMessageLanguage() {
         return helpMessageLanguage;
@@ -35,7 +50,7 @@ public class Settings {
      * %group will be replaced with the group
      * %syntax will be replaced with the syntax
      * %aliases will be replaced with the list of aliases
-     * <p>
+     * </p>
      */
     public static void setHelpFormat(String helpFormat) {
         Settings.helpFormat = helpFormat;
