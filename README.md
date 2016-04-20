@@ -21,13 +21,13 @@ Add the following to your pom.xml file;
 	<dependency>
             <groupId>space.gatt.javacordcommander</groupId>
             <artifactId>javacordcommander</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
 	...
 </dependencies>
 ```
 
-**The current version of Javacord Commander is:** ```1.0.0```
+**The current version of Javacord Commander is:** ```1.0.1```
 
 If you don't use Maven, you can download the latest .JAR file from the Maven Repository here: http://dev.gatt.space/maven/space/gatt/javacordcommander/javacordcommander/
 
