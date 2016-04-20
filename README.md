@@ -48,27 +48,28 @@ By using the second method, the ```enableSnooper()``` method is automatically ca
 The following is an example command from my own bot "Gasai Bot"
 
 ```java
-
-import de.btobastian.javacord.DiscordAPI;
-import de.btobastian.javacord.entities.User;
-import de.btobastian.javacord.entities.message.Message;
-import de.btobastian.javacord.entities.message.MessageBuilder;
-import de.btobastian.javacord.entities.message.MessageDecoration;
-import space.gatt.GattBot.Settings;
-import space.gatt.GattBot.utils.*;
-@Command("log")
-@Syntax("log")
-@Usage("log")
+@Command("botinfo")
+@Syntax("botinfo")
+@Usage("botinfo")
 @Permissions()
+@Description("Returns info about the Bot")
 @Group("Admin")
-@Description("Returns the invite link to Gasai Bots' Log Channel")
 @CommandSettings(deleteInitatingMsg = true, sendResponseViaPM = true)
-public class Log {
+public class BotInfo {
 	@IMethod
-	public static String command(DiscordAPI api, Message message, User user, String[] args) {
-		MessageBuilder builder = builder = new MessageBuilder();
-		builder.append(Settings.getMsgStarter()).appendDecoration(MessageDecoration.BOLD,
-		"https://discord.gg/0rtPRWdswScMri25").appendNewLine().append("There you go, for whatever reason you wanted it.");
+	public static String command(DiscordAPI discordAPI, Message message, User user, String[] args) {
+		MessageBuilder builder = new MessageBuilder();
+
+		builder.append(Settings.getMsgStarter() + " My current name: `" + discordAPI.getYourself().getName() + "`").appendNewLine();
+		builder.append(Settings.getMsgStarter() + " My current game: `" + discordAPI.getGame() + "`").appendNewLine();
+		builder.append(Settings.getMsgStarter() + " My current profile picture: `" + discordAPI.getYourself().getAvatarUrl()+"`").appendNewLine();
+		builder.append(Settings.getMsgStarter() + " Admin Rank Name: `Bot Commander`").appendNewLine();
+		builder.append(Settings.getMsgStarter() + " Servers joined: `" + discordAPI.getServers().size()+"`").appendNewLine();
+
+		builder.append( Settings.getMsgStarter() + " Users in Cache: `" + Main.userCache.keySet().size() + "`").appendNewLine();
+		message.getAuthor().sendMessage(builder.build());
+		builder = new MessageBuilder();
+		builder.append(Settings.getMsgStarter() + "I've PM'd you my information, ").appendUser(message.getAuthor());
 		return builder.build();
 	}
 }
