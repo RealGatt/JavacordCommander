@@ -21,13 +21,15 @@ Add the following to your pom.xml file;
 	<dependency>
             <groupId>space.gatt.javacordcommander</groupId>
             <artifactId>javacordcommander</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
         </dependency>
 	...
 </dependencies>
 ```
 
-**The current version of Javacord Commander is:** ```1.0.1```
+**The current version of Javacord Commander is:** ```1.0.2```
+
+*Changelog is at the bottom of the README*
 
 If you don't use Maven, you can download the latest .JAR file from the Maven Repository here: http://dev.gatt.space/maven/space/gatt/javacordcommander/javacordcommander/
 
@@ -88,4 +90,16 @@ The @Group tag defines what set of commands it will be a part of. This is mainly
 
 **This current version of the README is a quick-writeup for people to get the idea of JavacordCommander, I'll write up a proper version later.
 
-*Last Updated: 19/4/16 10:00PM AEST*
+
+# CHANGELOG
+
+## 1.0.2
+ > Added the Game Setting to the Settings Class, since Gasai Bot needed it and because I was lazy.
+ > Fixed some backend
+ 
+## 1.0.1
+ > Realised that it never actually registered any listeners... Fixed that
+ 
+## 1.0.0
+ > Inital Release. Never worked technically.
+
