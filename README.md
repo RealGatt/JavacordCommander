@@ -95,6 +95,7 @@ The @Group tag defines what set of commands it will be a part of. This is mainly
 
 ## 1.0.2
  > Added the Game Setting to the Settings Class, since Gasai Bot needed it and because I was lazy.
+ 
  > Fixed some backend
  
 ## 1.0.1
