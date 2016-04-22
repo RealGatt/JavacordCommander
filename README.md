@@ -47,7 +47,7 @@ By using the second method, the ```enableSnooper()``` method is automatically ca
 
 # Creating Commands
 
-The following is an example command from my own bot "Gasai Bot"
+The following is an example command from my own bot [Gasai Bot](https://github.com/RealGatt/GasaiBot)
 
 ```java
 @Command("botinfo")
