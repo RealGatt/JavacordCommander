@@ -9,10 +9,23 @@ public class Settings {
     private static String commandStarter = "";
     private static String msgStarter = "";
 
+    private static String game = "";
+
     private static String helpMessageBreaker = "~~~~ %group ~~~~";
     private static String helpMessageLanguage = "xml";
     private static String helpFormat = "< %cmd > - %desc - %group";
 
+
+    public static String getGame() {
+        return game;
+    }
+
+    /**
+     * Set's the game. Only included because Gasai Bot needed it.
+     */
+    public static void setGame(String game) {
+        Settings.game = game;
+    }
 
     public static String getHelpMessageBreaker() {
         return helpMessageBreaker;
