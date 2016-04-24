@@ -77,6 +77,19 @@ public class JavacordCommander {
 		return commandList;
 	}
 
+	private boolean allowAdminBypass = false;
+
+	public boolean allowAdminBypass() {
+		return allowAdminBypass;
+	}
+
+	/**
+	 * <p>If you want to allow the Admin Users to bypass the Permission Requirements, set this to true</p>
+	 */
+	public void setAllowAdminBypass(boolean allowAdminBypass) {
+		this.allowAdminBypass = allowAdminBypass;
+	}
+
 	public ArrayList<String> getAdminUsers() {
 		return adminUsers;
 	}

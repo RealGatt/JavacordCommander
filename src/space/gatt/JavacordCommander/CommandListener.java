@@ -96,6 +96,11 @@ public class CommandListener implements MessageCreateListener {
 					}
 					if (ranks.length > 0 && !ranks[0].equals("null")){
 						boolean hasRank = false;
+
+						if (JavacordCommander.getInstance().allowAdminBypass()){
+							hasRank = JavacordCommander.getInstance().getAdminUsers().contains(message.getAuthor().getId());
+						}
+
 						for (String rank : ranks){
 							if (hasRole(message.getAuthor(), message.getChannelReceiver().getServer(), rank, false)){
 								hasRank = true;
@@ -106,7 +111,6 @@ public class CommandListener implements MessageCreateListener {
 							for (String r : ranks){
 								reply = reply + " `" + r + "`";
 							}
-							reply = reply + "`";
 							if (sendPM){
 								message.getAuthor().sendMessage(reply);
 							}else{
