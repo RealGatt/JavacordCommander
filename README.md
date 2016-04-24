@@ -21,13 +21,13 @@ Add the following to your pom.xml file;
 	<dependency>
             <groupId>space.gatt.javacordcommander</groupId>
             <artifactId>javacordcommander</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
         </dependency>
 	...
 </dependencies>
 ```
 
-**The current version of Javacord Commander is:** ```1.0.2```
+**The current version of Javacord Commander is:** ```1.0.3```
 
 *Changelog is at the bottom of the README*
 
@@ -92,6 +92,14 @@ The @Group tag defines what set of commands it will be a part of. This is mainly
 
 
 # CHANGELOG
+
+## 1.0.3
+ > Added a Admin Permission Bypass
+ 
+ ```java
+ JavacordCommander#setAllowAdminBypass(boolean)
+ ```
+ > This ignores the permission requirement for Admin Users
 
 ## 1.0.2
  > Added the Game Setting to the Settings Class, since Gasai Bot needed it and because I was lazy.
