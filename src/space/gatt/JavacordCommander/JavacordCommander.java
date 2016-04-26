@@ -188,6 +188,7 @@ public class JavacordCommander {
 			}
 			msg = msg.replace("%cmd", cmd).replace("%group", group).replace("%desc", description).replace("%syntax", syntax).replace("%aliases", aliasesMsg);
 			list.add(msg);
+			helpLines.put(group, list);
 		}
 	}
 
