@@ -36,13 +36,13 @@ If you don't use Maven, you can download the latest .JAR file from the Maven Rep
 # Registering commands
 
 ```java
-DiscordAPI api = new DiscordAPI(...);
+DiscordAPI api = Javacord.getApi(...);
 JavacordCommander jcc = new JavacordCommander(api);
 jcc.enableSnooper("your.package.here");
 ```
 or
 ```java
-DiscordAPI api = new DiscordAPI(...);
+DiscordAPI api = Javacord.getApi(...);
 JavacordCommander jcc = new JavacordCommander(api, "your.package.here");
 ```
 By using the second method, the ```enableSnooper()``` method is automatically called.
