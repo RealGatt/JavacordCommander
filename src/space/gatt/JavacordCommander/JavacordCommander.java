@@ -144,7 +144,7 @@ public class JavacordCommander {
 		MessageBuilder builder = new MessageBuilder();
 		builder.append("```" + Settings.getHelpMessageLanguage()).appendNewLine();
 		for (String group : helpLines.keySet()){
-			builder.append(Settings.getHelpMessageBreaker().replace("%group", group));
+			builder.append(Settings.getHelpMessageBreaker().replace("%group", group)).appendNewLine();
 			for (String msg : helpLines.get(group)){
 				builder.append(msg).appendNewLine();
 			}
