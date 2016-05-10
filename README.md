@@ -94,7 +94,7 @@ The @Group tag defines what set of commands it will be a part of. This is mainly
 # CHANGELOG
 
 # 1.0.4
- > Breaks up the Help Message into a List<String> of less than 2000 characters per object to allow the bypassing of the 2000 Character Limit. See (here)[https://github.com/RealGatt/GasaiBot/blob/master/src/space/gatt/GasaiBot/commands/Admin/Help.java] for an example.
+ > Breaks up the Help Message into a List<String> of less than 2000 characters per object to allow the bypassing of the 2000 Character Limit. See [here](https://github.com/RealGatt/GasaiBot/blob/master/src/space/gatt/GasaiBot/commands/Admin/Help.java) for an example.
 
 ## 1.0.3
  > Added a Admin Permission Bypass
