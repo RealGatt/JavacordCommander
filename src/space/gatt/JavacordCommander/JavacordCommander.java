@@ -137,12 +137,21 @@ public class JavacordCommander {
 		}
 	}
 
+	private static List<String> getParts(String string, int partitionSize) {
+		List<String> parts = new ArrayList<String>();
+		int len = string.length();
+		for (int i=0; i<len; i+=partitionSize)
+		{
+		    parts.add("```" + Settings.getHelpMessageLanguage() + "\n" + string.substring(i, Math.min(len, i + partitionSize)) + "\n```");
+		}
+		return parts;
+	}
+
 	/**
 	* <p>Returns the Built Help Message with all the Groups and stuff.</p>
 	*/
-	public String buildHelpMessage(){
+	public List<String> buildHelpMessage(){
 		MessageBuilder builder = new MessageBuilder();
-		builder.append("```" + Settings.getHelpMessageLanguage()).appendNewLine();
 		for (String group : helpLines.keySet()){
 			builder.append(Settings.getHelpMessageBreaker().replace("%group", group));
 			builder.appendNewLine();
@@ -150,8 +159,8 @@ public class JavacordCommander {
 				builder.append(msg).appendNewLine();
 			}
 		}
-		builder.append("```");
-		return builder.build();
+		List<String> parts = getParts(builder.build(), 1950);
+		return parts;
 	}
 
 	private void loadData(Class c, String cmd){
