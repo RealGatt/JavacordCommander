@@ -56,6 +56,7 @@ public class MessageManager {
 				for (Channel c : messagesToSend.keySet()){
 					if (messagesToSend.get(c).size() > 0){
 						String m = messagesToSend.get(c).get(0);
+						c.sendMessage(m);
 						messagesToSend.get(c).remove(0);
 					}
 				}

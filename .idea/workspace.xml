@@ -2,43 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f6d3c9ff-ac43-4ec8-97d8-1d8879b4a75d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/MessageManager.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_0_13.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_0_13.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_annotations_2_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_19_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_mashape_unirest_unirest_java_1_4_8.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_neovisionaries_nv_websocket_client_1_19.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__de_btobastian_javacord_javacord_2_0_10.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__gson_gson_2_6_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpasyncclient_4_0_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_3_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_3_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_nio_4_3_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_3_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_java_websocket_Java_WebSocket_1_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_19_0_GA.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_json_json_20140107.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jsoup_jsoup_1_8_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_16_8.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_reflections_reflections_0_9_10.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_18.xml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/Aliases.java" afterPath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/annotations/Aliases.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/Command.java" afterPath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/annotations/Command.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/CommandSettings.java" afterPath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/annotations/CommandSettings.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/Description.java" afterPath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/annotations/Description.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/Group.java" afterPath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/annotations/Group.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/IMethod.java" afterPath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/annotations/IMethod.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/Permissions.java" afterPath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/annotations/Permissions.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/Syntax.java" afterPath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/annotations/Syntax.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/Usage.java" afterPath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/annotations/Usage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/CommandListener.java" afterPath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/CommandListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/JavacordCommander.java" afterPath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/JavacordCommander.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/MessageManager.java" afterPath="$PROJECT_DIR$/src/space/gatt/JavacordCommander/MessageManager.java" />
     </list>
     <ignored path="JavacordCommander.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -113,8 +77,8 @@
       <file leaf-file-name="MessageManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/space/gatt/JavacordCommander/MessageManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.24916944">
-              <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.6976744">
+              <caret line="58" column="41" selection-start-line="58" selection-start-column="41" selection-end-line="58" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -219,9 +183,9 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/space/gatt/JavacordCommander/Settings.java" />
         <option value="$PROJECT_DIR$/src/space/gatt/JavacordCommander/Cleaner.java" />
-        <option value="$PROJECT_DIR$/src/space/gatt/JavacordCommander/MessageManager.java" />
         <option value="$PROJECT_DIR$/src/space/gatt/JavacordCommander/CommandListener.java" />
         <option value="$PROJECT_DIR$/src/space/gatt/JavacordCommander/JavacordCommander.java" />
+        <option value="$PROJECT_DIR$/src/space/gatt/JavacordCommander/MessageManager.java" />
       </list>
     </option>
   </component>
@@ -775,12 +739,12 @@
       <workItem from="1461143143184" duration="566000" />
       <workItem from="1461320725938" duration="822000" />
       <workItem from="1461486011718" duration="221000" />
-      <workItem from="1463191649583" duration="465000" />
+      <workItem from="1463191649583" duration="509000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7508000" />
+    <option name="totallyTimeSpent" value="7552000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="193" y="23" width="2219" height="1328" extended-state="0" />
@@ -1412,8 +1376,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/space/gatt/JavacordCommander/MessageManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24916944">
-          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.6976744">
+          <caret line="58" column="41" selection-start-line="58" selection-start-column="41" selection-end-line="58" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
