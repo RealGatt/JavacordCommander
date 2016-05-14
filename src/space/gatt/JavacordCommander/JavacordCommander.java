@@ -1,9 +1,9 @@
 package space.gatt.JavacordCommander;
 
 import de.btobastian.javacord.DiscordAPI;
-import de.btobastian.javacord.Javacord;
 import de.btobastian.javacord.entities.message.MessageBuilder;
 import org.reflections.Reflections;
+import space.gatt.JavacordCommander.annotations.*;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -39,6 +39,7 @@ public class JavacordCommander {
 		JavacordCommander.instance = this;
 		enableSnooper(dir);
 		javacordInstance.registerListener(new CommandListener());
+		MessageManager.startManager();
 	}
 
 	public static JavacordCommander getInstance() {

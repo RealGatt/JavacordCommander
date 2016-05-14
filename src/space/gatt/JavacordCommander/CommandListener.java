@@ -6,12 +6,12 @@ import de.btobastian.javacord.entities.User;
 import de.btobastian.javacord.entities.message.Message;
 import de.btobastian.javacord.entities.permissions.Role;
 import de.btobastian.javacord.listener.message.MessageCreateListener;
-import javassist.compiler.Javac;
+import space.gatt.JavacordCommander.annotations.CommandSettings;
+import space.gatt.JavacordCommander.annotations.Permissions;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -114,7 +114,7 @@ public class CommandListener implements MessageCreateListener {
 							if (sendPM){
 								message.getAuthor().sendMessage(reply);
 							}else{
-								message.reply(reply);
+								MessageManager.sendMessage(message.getChannelReceiver(), reply);
 							}
 							return;
 						}
@@ -135,7 +135,7 @@ public class CommandListener implements MessageCreateListener {
 					if (sendPM){
 						message.getAuthor().sendMessage(msg);
 					}else{
-						message.reply(msg);
+						MessageManager.sendMessage(message.getChannelReceiver(), msg);
 					}
 				}
 			}

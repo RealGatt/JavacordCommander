@@ -1,4 +1,4 @@
-package space.gatt.JavacordCommander;
+package space.gatt.JavacordCommander.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  */
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE) //can use in method only.
-public @interface Syntax {
-	String value();
+@Target(ElementType.METHOD) //can use in method only.
+public @interface IMethod {
+	String[] value() default "";
 }
