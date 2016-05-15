@@ -1,9 +1,9 @@
 package space.gatt.JavacordCommander;
 
 import de.btobastian.javacord.DiscordAPI;
-import de.btobastian.javacord.Javacord;
 import de.btobastian.javacord.entities.message.MessageBuilder;
 import org.reflections.Reflections;
+import space.gatt.JavacordCommander.annotations.*;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -39,6 +39,7 @@ public class JavacordCommander {
 		JavacordCommander.instance = this;
 		enableSnooper(dir);
 		javacordInstance.registerListener(new CommandListener());
+		MessageManager.startManager();
 	}
 
 	public static JavacordCommander getInstance() {
@@ -137,20 +138,30 @@ public class JavacordCommander {
 		}
 	}
 
+	private static List<String> getParts(String string, int partitionSize) {
+		List<String> parts = new ArrayList<String>();
+		int len = string.length();
+		for (int i=0; i<len; i+=partitionSize)
+		{
+		    parts.add("```" + Settings.getHelpMessageLanguage() + "\n" + string.substring(i, Math.min(len, i + partitionSize)) + "\n```");
+		}
+		return parts;
+	}
+
 	/**
 	* <p>Returns the Built Help Message with all the Groups and stuff.</p>
 	*/
-	public String buildHelpMessage(){
+	public List<String> buildHelpMessage(){
 		MessageBuilder builder = new MessageBuilder();
-		builder.append("```" + Settings.getHelpMessageLanguage()).appendNewLine();
 		for (String group : helpLines.keySet()){
 			builder.append(Settings.getHelpMessageBreaker().replace("%group", group));
+			builder.appendNewLine();
 			for (String msg : helpLines.get(group)){
 				builder.append(msg).appendNewLine();
 			}
 		}
-		builder.append("```");
-		return builder.build();
+		List<String> parts = getParts(builder.build(), 1950);
+		return parts;
 	}
 
 	private void loadData(Class c, String cmd){
@@ -188,6 +199,7 @@ public class JavacordCommander {
 			}
 			msg = msg.replace("%cmd", cmd).replace("%group", group).replace("%desc", description).replace("%syntax", syntax).replace("%aliases", aliasesMsg);
 			list.add(msg);
+			helpLines.put(group, list);
 		}
 	}
 

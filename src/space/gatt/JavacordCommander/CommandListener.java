@@ -1,17 +1,18 @@
 package space.gatt.JavacordCommander;
 
+import com.google.common.base.Splitter;
 import de.btobastian.javacord.DiscordAPI;
 import de.btobastian.javacord.entities.Server;
 import de.btobastian.javacord.entities.User;
 import de.btobastian.javacord.entities.message.Message;
 import de.btobastian.javacord.entities.permissions.Role;
 import de.btobastian.javacord.listener.message.MessageCreateListener;
-import javassist.compiler.Javac;
+import space.gatt.JavacordCommander.annotations.CommandSettings;
+import space.gatt.JavacordCommander.annotations.Permissions;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -114,7 +115,7 @@ public class CommandListener implements MessageCreateListener {
 							if (sendPM){
 								message.getAuthor().sendMessage(reply);
 							}else{
-								message.reply(reply);
+								MessageManager.sendMessage(message.getChannelReceiver(), reply);
 							}
 							return;
 						}
@@ -132,10 +133,23 @@ public class CommandListener implements MessageCreateListener {
 						e.printStackTrace();
 					}
 
+					if (msg.length() > 1980){
+						if (sendPM){
+							for (String sMsg: Splitter.fixedLength(1980).split(msg)) {
+								message.getAuthor().sendMessage(sMsg);
+							}
+						}else{
+							for (String sMsg: Splitter.fixedLength(1980).split(msg)) {
+								MessageManager.sendMessage(message.getChannelReceiver(), sMsg);
+							}
+						}
+						return;
+					}
+
 					if (sendPM){
 						message.getAuthor().sendMessage(msg);
 					}else{
-						message.reply(msg);
+						MessageManager.sendMessage(message.getChannelReceiver(), msg);
 					}
 				}
 			}
