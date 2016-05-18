@@ -42,7 +42,7 @@ public class MessageManager {
 		return null;
 	}
 
-	public synchronized static void startManager(){
+	public synchronized static void startManager(int interval){
 		TimerTask task = new TimerTask() {
 			@Override
 			public void run() {
@@ -65,10 +65,9 @@ public class MessageManager {
 
 		Timer timer = new Timer();
 		long delay = 0;
-		long intevalPeriod = 500;
 
 		// schedules the task to be run in an interval
-		timer.scheduleAtFixedRate(task, delay, intevalPeriod);
+		timer.scheduleAtFixedRate(task, delay, interval);
 	}
 
 }

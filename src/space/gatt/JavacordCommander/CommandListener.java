@@ -158,6 +158,7 @@ public class CommandListener implements MessageCreateListener {
 						return;
 					}
 					if (messages != null){
+
 						if (sendPM){
 							for (String s : messages){
 								message.getAuthor().sendMessage(s);

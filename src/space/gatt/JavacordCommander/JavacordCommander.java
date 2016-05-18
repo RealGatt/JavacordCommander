@@ -29,6 +29,14 @@ public class JavacordCommander {
 		this.javacordInstance = apiInstance;
 		JavacordCommander.instance = this;
 		javacordInstance.registerListener(new CommandListener());
+		MessageManager.startManager(1000);
+	}
+
+	public JavacordCommander(DiscordAPI apiInstance, Integer messageManagerDelay){
+		this.javacordInstance = apiInstance;
+		JavacordCommander.instance = this;
+		javacordInstance.registerListener(new CommandListener());
+		MessageManager.startManager(messageManagerDelay);
 	}
 
 	/**
@@ -39,7 +47,15 @@ public class JavacordCommander {
 		JavacordCommander.instance = this;
 		enableSnooper(dir);
 		javacordInstance.registerListener(new CommandListener());
-		MessageManager.startManager();
+		MessageManager.startManager(1000);
+	}
+
+	public JavacordCommander(DiscordAPI apiInstance, String dir, Integer messageManagerDelay){
+		this.javacordInstance = apiInstance;
+		JavacordCommander.instance = this;
+		enableSnooper(dir);
+		javacordInstance.registerListener(new CommandListener());
+		MessageManager.startManager(messageManagerDelay);
 	}
 
 	public static JavacordCommander getInstance() {
