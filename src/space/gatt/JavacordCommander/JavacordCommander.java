@@ -147,7 +147,7 @@ public class JavacordCommander {
 							}
 						}
 					}else{
-						throw new IllegalArgumentException("The class " + c.getName() + " tried to register the command " + cmd + " a second time!");
+						System.out.println("The class " + c.getName() + " tried to register the command " + cmd + " a second time!");
 					}
 				}
 			}
