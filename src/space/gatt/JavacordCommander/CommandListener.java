@@ -10,10 +10,13 @@ import de.btobastian.javacord.listener.message.MessageCreateListener;
 import space.gatt.JavacordCommander.annotations.CommandSettings;
 import space.gatt.JavacordCommander.annotations.Permissions;
 
+import java.io.File;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Zach G on 06-Apr-16.
@@ -125,21 +128,55 @@ public class CommandListener implements MessageCreateListener {
 
 					Class<?> clz = JavacordCommander.getInstance().getCommandRegistrar().get(cmd);
 					String methodName = JavacordCommander.getInstance().getMethodRegistrar().get(cmd).getName();
+
+					String[] messages = null;
+					File file = null;
+
+
 					try {
 						method = clz.getDeclaredMethod(methodName, DiscordAPI.class, Message.class, User.class, String[].class);
 						Object value = method.invoke(this, api, message, message.getAuthor(), args);
-						msg = (String) value;
+						if (value instanceof String) {
+							msg = (String) value;
+						}else if (value instanceof String[]){
+							messages = (String[])value;
+						}else if (value instanceof List){
+							messages = ((List<String>) value).toArray(new String[((List<String>) value).size()]);
+						}else if (value instanceof File){
+							file = (File)value;
+						}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
 
-					if (msg.length() > 1980){
+					if (file != null){
 						if (sendPM){
-							for (String sMsg: Splitter.fixedLength(1980).split(msg)) {
+							message.getAuthor().sendFile(file);
+						}else{
+							message.replyFile(file);
+						}
+						return;
+					}
+					if (messages != null){
+						if (sendPM){
+							for (String s : messages){
+								message.getAuthor().sendMessage(s);
+							}
+						}else{
+							for (String s : messages){
+								MessageManager.sendMessage(message.getChannelReceiver(), s);
+							}
+						}
+						return;
+					}
+
+					if (msg.length() > 1999){
+						if (sendPM){
+							for (String sMsg: Splitter.fixedLength(1999).split(msg)) {
 								message.getAuthor().sendMessage(sMsg);
 							}
 						}else{
-							for (String sMsg: Splitter.fixedLength(1980).split(msg)) {
+							for (String sMsg: Splitter.fixedLength(1999).split(msg)) {
 								MessageManager.sendMessage(message.getChannelReceiver(), sMsg);
 							}
 						}
