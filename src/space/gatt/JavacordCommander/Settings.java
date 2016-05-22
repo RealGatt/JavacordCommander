@@ -7,6 +7,7 @@ public class Settings {
 
     private static String defaultGroup = "";
     private static String commandStarter = "";
+    private static String altCommandStarter = "";
     private static String msgStarter = "";
 
     private static String game = "";
@@ -100,8 +101,21 @@ public class Settings {
         Settings.msgStarter = msgStarter;
     }
     /**
-     * @return Command Starter
+     * @return Alternative Command Starter
      */
+    public static String getAltCommandStarter() {
+        return altCommandStarter;
+    }
+    /**
+     * @param str Alternative Command Starter
+     */
+    public static void setAltCommandStarter(String str) {
+        altCommandStarter = str;
+    }
+    /**
+     * @return Default Group
+     */
+
     public static String getCommandStarter() {
         return commandStarter;
     }
@@ -114,6 +128,7 @@ public class Settings {
     /**
      * @return Default Group
      */
+
     public static String getDefaultGroup() {
         return defaultGroup;
     }

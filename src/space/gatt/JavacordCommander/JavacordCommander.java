@@ -220,12 +220,12 @@ public class JavacordCommander {
 				String currentStore = current;
 				currentStore += "\n" + s;
 				if (currentStore.length() >= 1990){
-					parts.add(current);
+					parts.add("```" + current + "```");
 					currentStore = s;
 				}
 				current = currentStore;
 			}
-			parts.add(current);
+			parts.add("```" + current + "```");
 		}
 		return parts;
 	}
