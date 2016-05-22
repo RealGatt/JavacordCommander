@@ -1,7 +1,7 @@
 package space.gatt.JavacordCommander;
 
 /**
- * Created by Zach on 5/03/2016.
+ * Settings. Change things about Javacord Commander here.
  */
 public class Settings {
 

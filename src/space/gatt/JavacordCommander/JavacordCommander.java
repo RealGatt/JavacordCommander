@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Created by Zach G on 06-Apr-16.
+ * The Main JavacordCommander Class. You should only need to reference this and Settings.
  */
 public class JavacordCommander {
 

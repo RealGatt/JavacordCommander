@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by Zach G on 06-Apr-16.
+ * You don't need to access this :)
  */
 public class CommandListener implements MessageCreateListener {
 

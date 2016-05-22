@@ -6,7 +6,7 @@ import de.btobastian.javacord.entities.message.Message;
 import java.util.*;
 
 /**
- * Created by Zach G on 24-Apr-16.
+ * The Message Manager class. Handles the deletion and sending of messages in a way that hopefully bypasses the rate-limit.
  */
 public class MessageManager {
 
