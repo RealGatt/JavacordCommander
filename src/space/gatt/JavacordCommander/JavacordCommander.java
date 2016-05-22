@@ -211,21 +211,26 @@ public class JavacordCommander {
 	*/
 	public List<String> buildHelpMessage(){
 		List<String> parts = new ArrayList<>();
-
+		String current = "";
 		for (String group : helpLines.keySet()){
 			parts.add(Settings.getHelpMessageBreaker().replace("%group", group));
-			String current = "";
+
+			String currentStore = current;
+			currentStore += "\n" + group;
+			if (currentStore.length() >= 1950){
+				parts.add("```" + Settings.getHelpMessageLanguage() + "\n" + current + "```");
+				currentStore = group;
+			}
+			current = currentStore;
 			for (String msg : helpLines.get(group)){
-				String s = msg;
-				String currentStore = current;
-				currentStore += "\n" + s;
+				currentStore = current;
+				currentStore += "\n" + msg;
 				if (currentStore.length() >= 1950){
 					parts.add("```" + Settings.getHelpMessageLanguage() + "\n" + current + "```");
-					currentStore = s;
+					currentStore = msg;
 				}
 				current = currentStore;
 			}
-			parts.add("```" + Settings.getHelpMessageLanguage() + "\n" + current + "```");
 		}
 		return parts;
 	}

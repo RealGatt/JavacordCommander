@@ -30,149 +30,150 @@ public class CommandListener implements MessageCreateListener {
 	 */
 	@Override
 	public void onMessageCreate(DiscordAPI api, Message message) {
-		if (message.getContent().startsWith(Settings.getCommandStarter()) || message.getContent().startsWith(Settings.getAltCommandStarter())) {
-
-			String[] args = message.getContent().split(" ");
+		String[] args = message.getContent().split(" ");
+		if (message.getContent().startsWith(Settings.getCommandStarter())) {
 			args[0] = args[0].replaceFirst(Settings.getCommandStarter(), "").toLowerCase();
+		}else if (message.getContent().startsWith(Settings.getAltCommandStarter())) {
 			args[0] = args[0].replaceFirst(Settings.getAltCommandStarter(), "").toLowerCase();
-			if (JavacordCommander.getInstance().getCommandList().contains(args[0])) {
-				String msg = Settings.getMsgStarter() + "Error. No response given by command.";
-				Class<?> enclosingClass = JavacordCommander.getInstance().getCommandRegistrar().get(args[0]);
-				String cmd = args[0];
-				args = Arrays.copyOfRange(args, 1, args.length);
-				if (enclosingClass != null) {
-					boolean adminOnly = false;
-					boolean deleteMsg = false;
-					boolean sendPM = false;
-					boolean requiresPM = false;
-					String[] ranks = new String[]{};
+		}
+		String cmd = args[0];
+		if (JavacordCommander.getInstance().getCommandList().contains(cmd)) {
+			String msg = Settings.getMsgStarter() + "Error. No response given by command.";
+			Class<?> enclosingClass = JavacordCommander.getInstance().getCommandRegistrar().get(cmd);
+			args = Arrays.copyOfRange(args, 1, args.length);
+			if (enclosingClass != null) {
+				boolean adminOnly = false;
+				boolean deleteMsg = false;
+				boolean sendPM = false;
+				boolean requiresPM = false;
+				String[] ranks = new String[]{};
 
-					for (Annotation a : enclosingClass.getAnnotations()){
-						if (a instanceof Permissions){
-							ranks = ((Permissions)a).ranks();
-							adminOnly = ((Permissions)a).adminOnly();
-						}
-						if (a instanceof CommandSettings){
-							deleteMsg = ((CommandSettings)a).deleteInitatingMsg();
-							sendPM = ((CommandSettings)a).sendResponseViaPM();
-							requiresPM = ((CommandSettings)a).requiresPM();
-						}
+				for (Annotation a : enclosingClass.getAnnotations()){
+					if (a instanceof Permissions){
+						ranks = ((Permissions)a).ranks();
+						adminOnly = ((Permissions)a).adminOnly();
 					}
-
-					if (requiresPM){
-						if (!message.isPrivateMessage()){
-							return;
-						}
+					if (a instanceof CommandSettings){
+						deleteMsg = ((CommandSettings)a).deleteInitatingMsg();
+						sendPM = ((CommandSettings)a).sendResponseViaPM();
+						requiresPM = ((CommandSettings)a).requiresPM();
 					}
+				}
 
-					if (deleteMsg){
-						message.delete();
+				if (requiresPM){
+					if (!message.isPrivateMessage()){
+						return;
 					}
+				}
 
-					if (adminOnly){
-						if (!(JavacordCommander.getInstance().getAdminUsers().contains(message.getAuthor().getId()))){
-							String reply = Settings.getMsgStarter() + "You are not one on my Admin List! Sorry!";
-							if (sendPM){
-								message.getAuthor().sendMessage(reply);
-							}else{
-								message.reply(reply);
-							}
-							return;
-						}
-					}
-					if (ranks.length > 0 && !ranks[0].equals("null")){
-						boolean hasRank = false;
+				if (deleteMsg){
+					message.delete();
+				}
 
-						if (JavacordCommander.getInstance().allowAdminBypass()){
-							hasRank = JavacordCommander.getInstance().getAdminUsers().contains(message.getAuthor().getId());
-						}
-
-						for (String rank : ranks){
-							if (JavacordCommander.getInstance().hasRole(message.getAuthor(), message.getChannelReceiver().getServer(), rank, false)){
-								hasRank = true;
-							}
-						}
-						if (!hasRank){
-							String reply = Settings.getMsgStarter() + "You do not have one of the following ranks:";
-							for (String r : ranks){
-								reply = reply + " `" + r + "`";
-							}
-							if (sendPM){
-								message.getAuthor().sendMessage(reply);
-							}else{
-								MessageManager.sendMessage(message.getChannelReceiver(), reply);
-							}
-							return;
-						}
-					}
-
-					Method method;
-
-					Class<?> clz = JavacordCommander.getInstance().getCommandRegistrar().get(cmd);
-					String methodName = JavacordCommander.getInstance().getMethodRegistrar().get(cmd).getName();
-
-					String[] messages = null;
-					File file = null;
-
-
-					try {
-						method = clz.getDeclaredMethod(methodName, DiscordAPI.class, Message.class, User.class, String[].class);
-						Object value = method.invoke(this, api, message, message.getAuthor(), args);
-						if (value instanceof String) {
-							msg = (String) value;
-						}else if (value instanceof String[]){
-							messages = (String[])value;
-						}else if (value instanceof List){
-							messages = ((List<String>) value).toArray(new String[((List<String>) value).size()]);
-						}else if (value instanceof File){
-							file = (File)value;
-						}
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-
-					if (file != null){
+				if (adminOnly){
+					if (!(JavacordCommander.getInstance().getAdminUsers().contains(message.getAuthor().getId()))){
+						String reply = Settings.getMsgStarter() + "You are not one on my Admin List! Sorry!";
 						if (sendPM){
-							message.getAuthor().sendFile(file);
+							message.getAuthor().sendMessage(reply);
 						}else{
-							message.replyFile(file);
+							message.reply(reply);
 						}
 						return;
 					}
-					if (messages != null){
+				}
+				if (ranks.length > 0 && !ranks[0].equals("null")){
+					boolean hasRank = false;
 
+					if (JavacordCommander.getInstance().allowAdminBypass()){
+						hasRank = JavacordCommander.getInstance().getAdminUsers().contains(message.getAuthor().getId());
+					}
+
+					for (String rank : ranks){
+						if (JavacordCommander.getInstance().hasRole(message.getAuthor(), message.getChannelReceiver().getServer(), rank, false)){
+							hasRank = true;
+						}
+					}
+					if (!hasRank){
+						String reply = Settings.getMsgStarter() + "You do not have one of the following ranks:";
+						for (String r : ranks){
+							reply = reply + " `" + r + "`";
+						}
 						if (sendPM){
-							for (String s : messages){
-								message.getAuthor().sendMessage(s);
-							}
+							message.getAuthor().sendMessage(reply);
 						}else{
-							for (String s : messages){
-								MessageManager.sendMessage(message.getChannelReceiver(), s);
-							}
+							MessageManager.sendMessage(message.getChannelReceiver(), reply);
 						}
 						return;
 					}
+				}
 
-					if (msg.length() > 1999){
-						if (sendPM){
-							for (String sMsg: Splitter.fixedLength(1999).split(msg)) {
-								message.getAuthor().sendMessage(sMsg);
-							}
-						}else{
-							for (String sMsg: Splitter.fixedLength(1999).split(msg)) {
-								MessageManager.sendMessage(message.getChannelReceiver(), sMsg);
-							}
-						}
-						return;
+				Method method;
+
+				Class<?> clz = JavacordCommander.getInstance().getCommandRegistrar().get(cmd);
+				String methodName = JavacordCommander.getInstance().getMethodRegistrar().get(cmd).getName();
+
+				String[] messages = null;
+				File file = null;
+
+
+				try {
+					method = clz.getDeclaredMethod(methodName, DiscordAPI.class, Message.class, User.class, String[].class);
+					Object value = method.invoke(this, api, message, message.getAuthor(), args);
+					if (value instanceof String) {
+						msg = (String) value;
+					}else if (value instanceof String[]){
+						messages = (String[])value;
+					}else if (value instanceof List){
+						messages = ((List<String>) value).toArray(new String[((List<String>) value).size()]);
+					}else if (value instanceof File){
+						file = (File)value;
 					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				if (file != null){
+					if (sendPM){
+						message.getAuthor().sendFile(file);
+					}else{
+						message.replyFile(file);
+					}
+					return;
+				}
+				if (messages != null){
 
 					if (sendPM){
-						message.getAuthor().sendMessage(msg);
+						for (String s : messages){
+							message.getAuthor().sendMessage(s);
+						}
 					}else{
-						MessageManager.sendMessage(message.getChannelReceiver(), msg);
+						for (String s : messages){
+							MessageManager.sendMessage(message.getChannelReceiver(), s);
+						}
 					}
+					return;
+				}
+
+				if (msg.length() > 1999){
+					if (sendPM){
+						for (String sMsg: Splitter.fixedLength(1999).split(msg)) {
+							message.getAuthor().sendMessage(sMsg);
+						}
+					}else{
+						for (String sMsg: Splitter.fixedLength(1999).split(msg)) {
+							MessageManager.sendMessage(message.getChannelReceiver(), sMsg);
+						}
+					}
+					return;
+				}
+
+				if (sendPM){
+					message.getAuthor().sendMessage(msg);
+				}else{
+					MessageManager.sendMessage(message.getChannelReceiver(), msg);
 				}
 			}
 		}
+
 	}
 }
