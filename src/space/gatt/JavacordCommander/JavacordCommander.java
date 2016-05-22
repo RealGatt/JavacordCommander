@@ -219,13 +219,13 @@ public class JavacordCommander {
 				String s = msg;
 				String currentStore = current;
 				currentStore += "\n" + s;
-				if (currentStore.length() >= 1990){
-					parts.add("```" + current + "```");
+				if (currentStore.length() >= 1950){
+					parts.add("```" + Settings.getHelpMessageLanguage() + "\n" + current + "```");
 					currentStore = s;
 				}
 				current = currentStore;
 			}
-			parts.add("```" + current + "```");
+			parts.add("```" + Settings.getHelpMessageLanguage() + "\n" + current + "```");
 		}
 		return parts;
 	}
