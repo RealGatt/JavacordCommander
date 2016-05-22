@@ -212,10 +212,8 @@ public class JavacordCommander {
 	public List<String> buildHelpMessage(){
 		List<String> parts = new ArrayList<>();
 		String current = "";
+		String currentStore = current;
 		for (String group : helpLines.keySet()){
-			parts.add(Settings.getHelpMessageBreaker().replace("%group", group));
-
-			String currentStore = current;
 			currentStore += "\n" + group;
 			if (currentStore.length() >= 1950){
 				parts.add("```" + Settings.getHelpMessageLanguage() + "\n" + current + "```");
