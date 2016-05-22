@@ -24,7 +24,7 @@ public class JavacordCommander {
 
 	/**
 	 * Including the (String) dir variable, will automatically call the enableSnooper method.
-	 * @apiInstance The Discord API Instance
+	 * @param apiInstance The Discord API Instance
 	 */
 	public JavacordCommander(DiscordAPI apiInstance){
 		this.javacordInstance = apiInstance;
@@ -35,8 +35,8 @@ public class JavacordCommander {
 
 	/**
 	 * Including the (String) dir variable, will automatically call the enableSnooper method.
-	 * @apiInstance The Discord API Instance
-	 * @messageManagerDelay The delay to give the Timer Task
+	 * @param apiInstance The Discord API Instance
+	 * @param messageManagerDelay The delay to give the Timer Task
 	 */
 	public JavacordCommander(DiscordAPI apiInstance, Integer messageManagerDelay){
 		this.javacordInstance = apiInstance;
@@ -47,8 +47,8 @@ public class JavacordCommander {
 
 	/**
 	 * Including the (String) dir variable, will automatically call the enableSnooper method.
-	 * @apiInstance The Discord API Instance
-	 * @dir The Directory to look through
+	 * @param apiInstance The Discord API Instance
+	 * @param dir The Directory to look through
 	 */
 	public JavacordCommander(DiscordAPI apiInstance, String dir){
 		this.javacordInstance = apiInstance;
@@ -59,9 +59,9 @@ public class JavacordCommander {
 	}
 	/**
 	 * Including the (String) dir variable, will automatically call the enableSnooper method.
-	 * @apiInstance The Discord API Instance
-	 * @dir The Directory to look through
-	 * @messageManagerDelay The delay to give the Timer Task
+	 * @param apiInstance The Discord API Instance
+	 * @param dir The Directory to look through
+	 * @param messageManagerDelay The delay to give the Timer Task
 	 */
 	public JavacordCommander(DiscordAPI apiInstance, String dir, Integer messageManagerDelay){
 		this.javacordInstance = apiInstance;
@@ -73,6 +73,7 @@ public class JavacordCommander {
 
 	/**
 	 * Returns the JavacordCommander instance
+	 * @return The JavacordCommander Instance
 	 */
 	public static JavacordCommander getInstance() {
 		return instance;
@@ -92,6 +93,7 @@ public class JavacordCommander {
 	
 	/**
 	 * Returns the List of Listening Classes
+	 * @return Listening Classes
 	 */
 	public List<Class> getListeners() {
 		return listeners;
@@ -99,6 +101,7 @@ public class JavacordCommander {
 
 	/**
 	 * Returns the List of Listening Methods
+	 * @return Listening Methods
 	 */
 	public List<Method> getListeningMethods() {
 		return listeningMethods;
@@ -106,18 +109,21 @@ public class JavacordCommander {
 	
 	/**
 	 * Returns the Command Registrar (Don't touch <3)
+	 * @retturn Command Registrar
 	 */
 	public HashMap<String, Class> getCommandRegistrar() {
 		return commandRegistrar;
 	}
 	/**
 	 * Returns the Command Registrar (Don't touch <3)
+	 * @return Command Registrar
 	 */
 	public HashMap<String, Method> getMethodRegistrar() {
 		return methodRegistrar;
 	}
 	/**
 	 * Returns the Command List
+	 * @return Command List
 	 */
 	public List<String> getCommandList() {
 		return commandList;
@@ -127,20 +133,22 @@ public class JavacordCommander {
 
 	/**
 	 * Returns if the Admin Bypass is Enabled
+	 * @return If the Admin Bypass is Enabled
 	 */
 	public boolean allowAdminBypass() {
 		return allowAdminBypass;
 	}
 
 	/**
-	 * <p>If you want to allow the Admin Users to bypass the Permission Requirements, set this to true</p>
-	 * @allowAdminBypass True or False value
+	 * If you want to allow the Admin Users to bypass the Permission Requirements, set this to true
+	 * @param  allowAdminBypass  True or False value
 	 */
 	public void setAllowAdminBypass(boolean allowAdminBypass) {
 		this.allowAdminBypass = allowAdminBypass;
 	}
 	/**
 	 * Returns the Admin Users
+	 * @return List of Admin Users
 	 */
 	public ArrayList<String> getAdminUsers() {
 		return adminUsers;
@@ -148,7 +156,7 @@ public class JavacordCommander {
 
 	/**
 	 * Adds the User from ID as an admin
-	 * @id Discord ID of User
+	 * @param id Discord ID of User
 	 */
 	public void addAdminUser(String id) {
 		adminUsers.add(id);
@@ -156,7 +164,7 @@ public class JavacordCommander {
 
 
 	/**
-	 * @dir The directory or package to look for classes in.
+	 * @param dir The directory or package to look for classes in.
 	 */
 	public void enableSnooper(String dir){
 		Reflections reflections = new Reflections(dir);
@@ -193,29 +201,29 @@ public class JavacordCommander {
 		}
 	}
 
-	private static List<String> getParts(String string, int partitionSize) {
-		List<String> parts = new ArrayList<String>();
-		int len = string.length();
-		for (int i=0; i<len; i+=partitionSize)
-		{
-		    parts.add("```" + Settings.getHelpMessageLanguage() + "\n" + string.substring(i, Math.min(len, i + partitionSize)) + "\n```");
-		}
-		return parts;
-	}
 
 	/**
 	* <p>Returns the Built Help Message with all the Groups and stuff.</p>
+	 * @return Built Help Message in List
 	*/
 	public List<String> buildHelpMessage(){
-		MessageBuilder builder = new MessageBuilder();
+		List<String> parts = new ArrayList<>();
+
 		for (String group : helpLines.keySet()){
-			builder.append(Settings.getHelpMessageBreaker().replace("%group", group));
-			builder.appendNewLine();
+			parts.add(Settings.getHelpMessageBreaker().replace("%group", group));
+			String current = "";
 			for (String msg : helpLines.get(group)){
-				builder.append(msg).appendNewLine();
+				String s = msg;
+				String currentStore = current;
+				currentStore += "\n" + s;
+				if (currentStore.length() >= 1990){
+					parts.add(current);
+					currentStore = s;
+				}
+				current = currentStore;
 			}
+			parts.add(current);
 		}
-		List<String> parts = getParts(builder.build(), 1950);
 		return parts;
 	}
 
