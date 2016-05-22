@@ -1,7 +1,10 @@
 package space.gatt.JavacordCommander;
 
 import de.btobastian.javacord.DiscordAPI;
+import de.btobastian.javacord.entities.Server;
+import de.btobastian.javacord.entities.User;
 import de.btobastian.javacord.entities.message.MessageBuilder;
+import de.btobastian.javacord.entities.permissions.Role;
 import org.reflections.Reflections;
 import space.gatt.JavacordCommander.annotations.*;
 
@@ -266,5 +269,40 @@ public class JavacordCommander {
 		}
 	}
 
+	/**
+	 *
+	 * @param user User to check
+	 * @param server Server to check against
+	 * @param roleName Role name
+	 * @param caseSensitive Case Sensitive
+	 * @return True or False
+	 */
+	public boolean hasRole(User user, Server server, String roleName, boolean caseSensitive){
+		if (caseSensitive) {
+			for (Role r : user.getRoles(server)) {
+				if (r.getName().equalsIgnoreCase(roleName)) {
+					return true;
+				}
+			}
+			return false;
+		}else{
+			return hasRole(user, server, roleName);
+		}
+	}
+	/**
+	 *
+	 * @param user User to check
+	 * @param server Server to check against
+	 * @param roleName Role name
+	 * @return True or False
+	 */
+	public boolean hasRole(User user, Server server, String roleName){
+		for (Role r : user.getRoles(server)){
+			if (r.getName().equals(roleName)){
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

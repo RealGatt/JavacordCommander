@@ -24,29 +24,10 @@ import java.util.List;
 public class CommandListener implements MessageCreateListener {
 
 	private HashMap<User, Long> commandCooldown = new HashMap<>();
-
-	private boolean hasRole(User user, Server server, String roleName, boolean caseSensitive){
-		if (caseSensitive) {
-			for (Role r : user.getRoles(server)) {
-				if (r.getName().equalsIgnoreCase(roleName)) {
-					return true;
-				}
-			}
-			return false;
-		}else{
-			return hasRole(user, server, roleName);
-		}
-	}
-
-	private boolean hasRole(User user, Server server, String roleName){
-		for (Role r : user.getRoles(server)){
-			if (r.getName().equals(roleName)){
-				return true;
-			}
-		}
-		return false;
-	}
-
+	/**
+	 * @param api API
+	 * @param message Message
+	 */
 	@Override
 	public void onMessageCreate(DiscordAPI api, Message message) {
 		if (message.getContent().startsWith(Settings.getCommandStarter())) {
@@ -106,7 +87,7 @@ public class CommandListener implements MessageCreateListener {
 						}
 
 						for (String rank : ranks){
-							if (hasRole(message.getAuthor(), message.getChannelReceiver().getServer(), rank, false)){
+							if (JavacordCommander.getInstance().hasRole(message.getAuthor(), message.getChannelReceiver().getServer(), rank, false)){
 								hasRank = true;
 							}
 						}

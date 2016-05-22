@@ -14,6 +14,11 @@ public class MessageManager {
 
 	private static HashMap<Channel, List<String>> messagesToSend = new HashMap<>();
 
+	/**
+	 *
+	 * @param c Channel
+	 * @param m Message to Delete
+	 */
 	public static void deleteMessage(Channel c, Message m){
 		List<Message> msgList = new ArrayList<>();
 		if (cleanerHash.containsKey(c)){
@@ -23,11 +28,21 @@ public class MessageManager {
 		cleanerHash.put(c, msgList);
 	}
 
+	/**
+	 *
+	 * @param c Channel to check
+	 * @return List of messages
+	 */
 	public static List<Message> getMessagesToDelete(Channel c){
 		if (cleanerHash.containsKey(c)) return cleanerHash.get(c);
 		return null;
 	}
 
+	/**
+	 *
+	 * @param c Channel
+	 * @param m Message to send
+	 */
 	public static void sendMessage(Channel c, String m){
 		List<String> msgList = new ArrayList<>();
 		if (messagesToSend.containsKey(c)){
@@ -37,11 +52,19 @@ public class MessageManager {
 		messagesToSend.put(c, msgList);
 	}
 
+	/**
+	 *
+	 * @param c Channel
+	 * @return Messages still to send
+	 */
 	public static List<String> getMessagesToSend(Channel c){
 		if (messagesToSend.containsKey(c)) return messagesToSend.get(c);
 		return null;
 	}
 
+	/**
+	 * @param interval The interval in milliseconds to update
+	 */
 	public synchronized static void startManager(int interval){
 		TimerTask task = new TimerTask() {
 			@Override
