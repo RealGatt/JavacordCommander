@@ -111,7 +111,7 @@ public class JavacordCommander {
 	}
 	
 	/**
-	 * Returns the Command Registrar (Don't touch <3)
+	 * Returns the Command Registrar (Don't touch)
 	 * @return Command Registrar
 	 */
 	public HashMap<String, Class> getCommandRegistrar() {
