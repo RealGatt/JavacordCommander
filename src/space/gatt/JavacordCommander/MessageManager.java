@@ -1,6 +1,7 @@
 package space.gatt.JavacordCommander;
 
 import de.btobastian.javacord.entities.Channel;
+import de.btobastian.javacord.entities.User;
 import de.btobastian.javacord.entities.message.Message;
 
 import java.util.*;
