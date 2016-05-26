@@ -144,7 +144,7 @@ public class CommandListener implements MessageCreateListener {
 
 					if (sendPM){
 						for (String s : messages){
-							message.getAuthor().sendMessage(s);
+							MessageManager.sendMessage(message.getAuthor(), s);
 						}
 					}else{
 						for (String s : messages){
@@ -157,7 +157,7 @@ public class CommandListener implements MessageCreateListener {
 				if (msg.length() > 1999){
 					if (sendPM){
 						for (String sMsg: Splitter.fixedLength(1999).split(msg)) {
-							message.getAuthor().sendMessage(sMsg);
+							MessageManager.sendMessage(message.getAuthor(), sMsg);
 						}
 					}else{
 						for (String sMsg: Splitter.fixedLength(1999).split(msg)) {
