@@ -13,6 +13,8 @@ public class MessageManager {
 	private static HashMap<Channel, List<Message>> cleanerHash = new HashMap<>();
 
 	private static HashMap<Channel, List<String>> messagesToSend = new HashMap<>();
+	
+	private static HashMap<User, List<String>> userMessagesToSend = new HashMap<>();
 
 	/**
 	 *
@@ -61,6 +63,30 @@ public class MessageManager {
 		if (messagesToSend.containsKey(c)) return messagesToSend.get(c);
 		return null;
 	}
+	
+	/**
+	 *
+	 * @param u User
+	 * @param m Message to send
+	 */
+	public static void sendMessage(User u, String m){
+		List<String> msgList = new ArrayList<>();
+		if (userMessagesToSend.containsKey(u)){
+			msgList = userMessagesToSend.get(u);
+		}
+		msgList.add(m);
+		userMessagesToSend.put(u, msgList);
+	}
+
+	/**
+	 *
+	 * @param u User
+	 * @return Messages still to send
+	 */
+	public static List<String> getMessagesToSend(User u){
+		if (userMessagesToSend.containsKey(u)) return userMessagesToSend.get(u);
+		return null;
+	}
 
 	/**
 	 * @param interval The interval in milliseconds to update
@@ -81,6 +107,14 @@ public class MessageManager {
 						String m = messagesToSend.get(c).get(0);
 						c.sendMessage(m);
 						messagesToSend.get(c).remove(0);
+					}
+				}
+				
+				for (User u : userMessagesToSend.keySet()){
+					if (userMessagesToSend.get(u).size() > 0){
+						String m = userMessagesToSend.get(u).get(0);
+						u.sendMessage(m);
+						userMessagesToSend.get(u).remove(0);
 					}
 				}
 			}
