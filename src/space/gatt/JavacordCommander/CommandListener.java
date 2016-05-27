@@ -30,17 +30,18 @@ public class CommandListener implements MessageCreateListener {
 	 */
 	@Override
 	public void onMessageCreate(DiscordAPI api, Message message) {
-		String[] args = message.getContent().split(" ");
+		String msgEdit = message.getContent();
 		boolean commandCheck = false;
 		if (message.getContent().startsWith(Settings.getCommandStarter())) {
-			args[0] = args[0].toLowerCase().replaceFirst(Settings.getCommandStarter().toLowerCase(), "").toLowerCase();
+			msgEdit = msgEdit.replaceFirst(Settings.getCommandStarter(), "");
 			commandCheck = true;
 		}
 		if (message.getContent().startsWith(Settings.getAltCommandStarter())) {
-			args[0] = args[0].toLowerCase().replaceFirst(Settings.getAltCommandStarter().toLowerCase(), "").toLowerCase();
+			msgEdit = msgEdit.replaceFirst(Settings.getAltCommandStarter(), "");
 			commandCheck = true;
 		}
-		String cmd = args[0];
+		String[] args = msgEdit.split(" ");
+		String cmd = args[0].toLowerCase();
 		if (JavacordCommander.getInstance().getCommandList().contains(cmd) && commandCheck) {
 			String msg = Settings.getMsgStarter() + "Error. No response given by command.";
 			Class<?> enclosingClass = JavacordCommander.getInstance().getCommandRegistrar().get(cmd);
