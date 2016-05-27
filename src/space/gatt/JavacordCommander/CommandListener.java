@@ -33,11 +33,11 @@ public class CommandListener implements MessageCreateListener {
 		String[] args = message.getContent().split(" ");
 		boolean commandCheck = false;
 		if (message.getContent().startsWith(Settings.getCommandStarter())) {
-			args[0] = args[0].replaceFirst(Settings.getCommandStarter(), "").toLowerCase();
+			args[0] = args[0].toLowerCase().replaceFirst(Settings.getCommandStarter().toLowerCase(), "").toLowerCase();
 			commandCheck = true;
 		}
 		if (message.getContent().startsWith(Settings.getAltCommandStarter())) {
-			args[0] = args[0].replaceFirst(Settings.getAltCommandStarter(), "").toLowerCase();
+			args[0] = args[0].toLowerCase().replaceFirst(Settings.getAltCommandStarter().toLowerCase(), "").toLowerCase();
 			commandCheck = true;
 		}
 		String cmd = args[0];
