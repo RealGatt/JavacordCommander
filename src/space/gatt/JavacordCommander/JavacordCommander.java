@@ -281,7 +281,7 @@ public class JavacordCommander {
 	 * @return True or False
 	 */
 	public boolean hasRole(User user, Server server, String roleName, boolean caseSensitive){
-		if (caseSensitive) {
+		if (!caseSensitive) {
 			for (Role r : user.getRoles(server)) {
 				if (r.getName().equalsIgnoreCase(roleName)) {
 					return true;
