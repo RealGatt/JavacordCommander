@@ -122,4 +122,13 @@
         </profile>
     </profiles>
 
+    <distributionManagement>
+        <!-- The javacord repository -->
+        <repository>
+            <id>javacordcommander-repo</id>
+            <name>JavacordCommander Repository</name>
+            <url>ftp://funnygatt.space/</url>
+        </repository>
+    </distributionManagement>
+
 </project>
