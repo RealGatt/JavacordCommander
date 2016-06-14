@@ -49,7 +49,7 @@ public class CommandListener implements MessageCreateListener {
 			if (enclosingClass != null) {
 				boolean adminOnly = false;
 				boolean deleteMsg = false;
-				boolean sendPM = false;
+				boolean sendPM = message.isPrivateMessage();
 				boolean requiresPM = false;
 				String[] ranks = new String[]{};
 
@@ -63,6 +63,10 @@ public class CommandListener implements MessageCreateListener {
 						sendPM = ((CommandSettings)a).sendResponseViaPM();
 						requiresPM = ((CommandSettings)a).requiresPM();
 					}
+				}
+				
+				if (message.isPrivateMessage()){
+					sendPM = true;
 				}
 
 				if (requiresPM){
