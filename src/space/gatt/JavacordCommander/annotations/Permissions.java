@@ -12,6 +12,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE) //can use in method only.
 public @interface Permissions {
-	String[] value() default "";
+	String[] value() default "null";
 	boolean adminOnly() default false;
 }
