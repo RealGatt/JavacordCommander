@@ -55,7 +55,7 @@ public class CommandListener implements MessageCreateListener {
 
 				for (Annotation a : enclosingClass.getAnnotations()){
 					if (a instanceof Permissions){
-						ranks = ((Permissions)a).ranks();
+						ranks = ((Permissions)a).value();
 						adminOnly = ((Permissions)a).adminOnly();
 					}
 					if (a instanceof CommandSettings){
