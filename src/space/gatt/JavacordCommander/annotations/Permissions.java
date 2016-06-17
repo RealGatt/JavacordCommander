@@ -14,5 +14,4 @@ import java.lang.annotation.Target;
 public @interface Permissions {
 	String[] value() default "";
 	boolean adminOnly() default false;
-	String[] ranks() default "null";
 }
